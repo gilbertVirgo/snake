@@ -2,6 +2,9 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
+const expressStatusMonitor = require('express-status-monitor');
 
 const Game = require("./game");
 
@@ -15,6 +18,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "..", "frontend", "build")));
+app.use(expressStatusMonitor({
+    websocket: io,
+    port
+}));
 
 const games = [];
 
@@ -58,6 +65,4 @@ app.put("/game/:room", ({body: {player}, params: {room}}, res) => {
     res.json(response);
 });
 
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
 server.listen(port, () => console.log(`Started server on port ${port}`));
