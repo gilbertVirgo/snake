@@ -22,6 +22,8 @@ const Create = ({history}) => {
 
         const {success, error} = await req.json();
 
+        console.log({success, error});
+
         if(success) {
             setGlobal({
                 player
