@@ -2,8 +2,6 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
 const expressStatusMonitor = require('express-status-monitor');
 
 const Game = require("./game");
@@ -11,6 +9,9 @@ const Game = require("./game");
 const port = 4013;
 
 const app = express();
+
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
 
 app.use(bodyParser.urlencoded({
     extended: true
