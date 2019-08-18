@@ -1,6 +1,7 @@
 const express = require("express");
-var bodyParser = require('body-parser')
-var cors = require('cors');
+const bodyParser = require('body-parser');
+const path = require('path');
+const cors = require('cors');
 
 const Game = require("./game");
 
@@ -13,12 +14,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cors());
-
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
-server.listen(port, () => console.log(`Started server on port ${port}`));
+app.use(express.static(path.join(__dirname, "..", "frontend", "build")));
 
 const games = [];
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, "..", "frontend", "build", "index.html"));
+});
 
 app.post("/game/:room", ({body: {player}, params: {room}}, res) => {
     const response = {success: null, error: null};
@@ -55,3 +57,7 @@ app.put("/game/:room", ({body: {player}, params: {room}}, res) => {
 
     res.json(response);
 });
+
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
+server.listen(port, () => console.log(`Started server on port ${port}`));

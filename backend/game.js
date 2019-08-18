@@ -57,6 +57,8 @@ function Game({room}) {
             });
     
             socket.on("move", ({player, direction}) => {
+                console.log({player, snakes: this.snakes});
+
                 const snake = this.snakes.find(({id}) => id === player);
                 snake.setDirection(direction);
             }); 
