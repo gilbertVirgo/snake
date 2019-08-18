@@ -1,6 +1,6 @@
 export const API_ROOT = (
-    location.hostname === "localhost" || 
-    location.hostname === "127.0.0.1" || 
-    location.hostname === "") ? 
+    window.location.hostname === "localhost" || 
+    window.location.hostname === "127.0.0.1" || 
+    window.location.hostname === "") ? 
     "http://localhost:4013" : 
     "http://snake-api.gilbertvirgo.com";
