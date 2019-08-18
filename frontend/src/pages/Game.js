@@ -123,7 +123,7 @@ const Game = ({history, match: {params: {room}}}) => {
 
     const [player] = useGlobal("player");
 
-    const socket = openSocket(`${API_ROOT}/${room}`);
+    const socket = openSocket(`${API_ROOT}/${room}`, {transports: ['websocket']});
     //const socket = openSocket("http://localhost:4013/" + room);
     const canvas = useRef(null);
 
