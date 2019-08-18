@@ -3,6 +3,7 @@ import {withRouter} from "react-router-dom";
 import {generateString} from "../functions";
 import Form from "../components/Form";
 import Button from "../components/Button";
+import {API_ROOT} from "../API";
 
 import "../scss/text.scss";
 
@@ -11,9 +12,7 @@ const Create = ({history}) => {
     const player = generateString();
 
     const handleSubmit = async () => {
-        const endpoint = "http://localhost:8000";
-
-        const req = await fetch(`${endpoint}/game/${room}`, {
+        const req = await fetch(`${API_ROOT}/game/${room}`, {
             headers: {
                 "Content-Type": "application/json"
             },

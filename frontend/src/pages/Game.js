@@ -3,6 +3,7 @@ import {withRouter} from "react-router-dom";
 import {Error, Loading} from "../components/Status";
 import openSocket from 'socket.io-client';
 import $ from "jquery";
+import {API_ROOT} from "../API";
 
 import "../scss/canvas.scss";
 
@@ -120,9 +121,7 @@ const Game = ({history, match: {params: {room}}}) => {
 
     const [global] = useGlobal();
 
-    const endpoint = "http://localhost:8000";
-
-    const socket = openSocket(`${endpoint}/${room}`);
+    const socket = openSocket(`${API_ROOT}/${room}`);
     const canvas = useRef(null);
 
     useEffect(() => {
