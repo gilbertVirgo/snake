@@ -3,7 +3,7 @@ import {withRouter} from "react-router-dom";
 import {Error, Loading} from "../components/Status";
 import openSocket from 'socket.io-client';
 import $ from "jquery";
-import {API_ROOT} from "../API";
+import {SOCKET_ROOT} from "../API";
 
 import "../scss/canvas.scss";
 
@@ -123,7 +123,7 @@ const Game = ({history, match: {params: {room}}}) => {
 
     const [player] = useGlobal("player");
 
-    const socket = openSocket(`${API_ROOT}/${room}`, {transports: ['websocket']});
+    const socket = openSocket(`${SOCKET_ROOT}/${room}`, {transports: ['websocket']});
     //const socket = openSocket("http://localhost:4013/" + room);
     const canvas = useRef(null);
 
