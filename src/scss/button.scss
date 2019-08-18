@@ -1,0 +1,14 @@
+@import "variables";
+@import "container";
+
+button, input[type="button"], input[type="submit"] {
+    appearance: none;
+    border: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bolder;
+    margin-right: 5px;
+
+    @extend .sm-box;
+    @extend [variant="primary"];
+}

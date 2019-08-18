@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import {Switch, Route} from "react-router-dom";
+import Home from "./pages/Home";
+import Create from "./pages/Create";
+import Join from "./pages/Join";
+import Game from "./pages/Game";
+import Nav from "./components/Nav";
+import Container from "./components/Container";
+import Header from './components/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import "./scss/main.scss";
+
+const App = () => (
+  <Container>
+    <Header>
+      <Header.Title>Snake</Header.Title>
+      <Header.Subtitle>By Gil</Header.Subtitle>
+      <Nav/>
+    </Header>
+    <Switch>
+      <Route exact path="/" render={props => <Home {...props}/>}/>
+      <Route path="/create" render={props => <Create {...props}/>}/>
+      <Route path="/join" render={props => <Join {...props}/>}/>
+      <Route path="/game/:room" render={props => <Game {...props} width={64} height={48} scale={10}/>}/>
+    </Switch>
+  </Container>
+);
 
 export default App;

@@ -1,0 +1,42 @@
+@import "mixins";
+
+.box {
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.sm-box {
+    padding: 5px 8px;
+    @extend .box
+}
+
+.md-box {
+    padding: 10px 16px;
+    @extend .box
+}
+
+.lg-box {
+    padding: 15px 24px;
+    @extend .box
+}
+
+.container {
+    @include breakpoints() {
+        margin: 0 auto;
+        position: relative;
+        box-sizing: border-box;
+        padding: 10px 16px;
+
+        &:last-child { margin-bottom: 10px }
+    }
+}
+
+.window {
+    // 14 px either side
+    @include breakpoints(28px) {
+        position: absolute;
+        max-width: 400px;
+        left: 0; right: 0;
+        margin: 0 auto;
+    }
+}

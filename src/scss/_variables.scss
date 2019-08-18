@@ -1,0 +1,29 @@
+$primary: rgba(25, 114, 120, 1);
+$secondary: rgba(237, 221, 212, 1);
+$dark: rgba(40, 61, 59, 1);
+$white: rgb(250, 250, 250);
+$danger: rgba(196, 69, 54, 1);
+
+$border: 0.5px solid $dark;
+
+[variant="primary"] {
+    background-color: $primary;
+    color: $white }
+[variant="secondary"] {
+    background-color: $secondary;
+    color: $dark }
+[variant="dark"] {
+    background-color: $dark;
+    color: $secondary }
+[variant="white"] {
+    background-color: $white;
+    color: $dark }
+[variant="danger"] {
+    background-color: $danger;
+    color: $secondary }
+
+$xs: 300px;
+$sm: 600px;
+$md: 900px;
+$lg: 1200px;
+$xl: 1600px;
