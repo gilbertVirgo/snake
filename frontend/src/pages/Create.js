@@ -25,9 +25,7 @@ const Create = ({history}) => {
         console.log({success, error});
 
         if(success) {
-            setGlobal({
-                player
-            });
+            setGlobal({player});
             history.push(`/game/${room}`);
         } else {
             console.error(error);

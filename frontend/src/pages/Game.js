@@ -20,8 +20,10 @@ CanvasRenderingContext2D.prototype.drawBody = function({x, y, width, height, col
 }
 
 const handleInput = ({socket, player, canvas}) => {
-    const handleMove = options => {
-        socket.emit("move", options);
+    const handleMove = ({direction, player}) => {
+        if(direction && player) {
+            socket.emit("move", {direction, player});
+        }
     }
 
     function Point({x, y}) {
@@ -49,7 +51,7 @@ const handleInput = ({socket, player, canvas}) => {
         }
     }
 
-    const actions = ["left", "up", "right", "down"]
+    const actions = ["left", "up", "right", "down"];
 
     $(window).on("keydown", ({which}) => {
         const key = which - 37;
@@ -91,7 +93,7 @@ const handleInput = ({socket, player, canvas}) => {
         for(index in triangles) {
             if(point.inTriangle(triangles[index])) break;
         }
-        
+    
         handleMove({
             direction: actions[index],
             player
@@ -119,9 +121,10 @@ const Game = ({history, match: {params: {room}}}) => {
     const [height, setHeight] = useState(0);
     const [scale, setScale] = useState(0);
 
-    const [global] = useGlobal();
+    const [player] = useGlobal("player");
 
-    const socket = openSocket(`${API_ROOT}/${room}`);
+    // const socket = openSocket(`${API_ROOT}/${room}`);
+    const socket = openSocket("http://localhost:4013/" + room);
     const canvas = useRef(null);
 
     useEffect(() => {
@@ -156,7 +159,7 @@ const Game = ({history, match: {params: {room}}}) => {
             });
             handleInput({
                 socket,
-                player: global.player,
+                player,
                 canvas: canvas.current
             });
         }
