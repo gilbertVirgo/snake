@@ -5,4 +5,4 @@
 //     "http://localhost:4013" : 
 //     "http://172.31.44.74:4013"; // local ip to prevent websocket errors
 
-export const API_ROOT = "http://localhost:4013";
+export const API_ROOT = "";
