@@ -1,3 +1,6 @@
+// OK... just figure this out using errors from online
+// snake-api.gilbertvirgo.com/create
+
 const express = require("express");
 const bodyParser = require('body-parser');
 const path = require('path');
